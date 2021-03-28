@@ -8,3 +8,23 @@
 # Реализовать общий подсчет расхода ткани. Проверить на практике полученные на этом уроке знания:
 # реализовать абстрактные классы для основных классов проекта, проверить на практике работу декоратора @property.
 
+class Clothes:
+    def __init__(self, typ, r):
+        self.typ = typ
+        self.r = r
+        if self.typ == 'пальто':
+            self.s = self.r/6.5+0.5
+        elif self.typ == 'костюм':
+            self.s =  self.r*2+0.3
+    def __add__(self, other):
+        return self.s + other
+    def __radd__(self, other):
+        return other + self.s
+    def __mul__(self, other):
+        return self.s * other
+    def __rmul__(self, other):
+        return other * self.s
+
+pal = Clothes('пальто',5)
+kos = Clothes('костюм',6)
+print(2*pal+3*kos)
